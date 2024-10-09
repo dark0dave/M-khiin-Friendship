@@ -1,0 +1,45 @@
+// Timer Talks
+IF
+    Global("BFSKinFriendshipActive","GLOBAL",0)
+    InParty(Myself)
+THEN
+  RESPONSE #100
+    RealSetGlobalTimer("BFSKinFriendshipTalksTimer","GLOBAL",1200)
+    SetGlobal("BFSFriendshipTalks","GLOBAL",1)
+    SetGlobal("BFSKinFriendshipActive","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    RealGlobalTimerExpired("BFSKinFriendshipTalksTimer","GLOBAL")
+    Global("BFSKinFriendshipActive","GLOBAL",1)
+    OR(4)
+      Global("BFSFriendshipTalks","GLOBAL",1)
+      Global("BFSFriendshipTalks","GLOBAL",3)
+      Global("BFSFriendshipTalks","GLOBAL",5)
+      Global("BFSFriendshipTalks","GLOBAL",7)
+THEN
+  RESPONSE #100
+    IncrementGlobal("BFSFriendshipTalks","GLOBAL",1)
+END
+
+IF
+    InParty(Myself)
+    See(Player1)
+    !StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    RealGlobalTimerExpired("BFSKinFriendshipTalksTimer","GLOBAL")
+    Global("BFSKinFriendshipActive","GLOBAL",1)
+    CombatCounter(0)
+    !See([ENEMY])
+    OR(4)
+      Global("BFSFriendshipTalks","GLOBAL",2)
+      Global("BFSFriendshipTalks","GLOBAL",4)
+      Global("BFSFriendshipTalks","GLOBAL",6)
+      Global("BFSFriendshipTalks","GLOBAL",8)
+THEN
+  RESPONSE #100
+    MoveToObject(Player1)
+    Dialogue(Player1)
+END
