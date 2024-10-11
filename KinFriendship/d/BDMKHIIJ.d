@@ -21,7 +21,7 @@ IF ~~ +BFSMk.WorldNorm
 END
 
 IF ~~ BFSMk.Slavery
-SAY ~Not many would call caging a goblin slavery. Guess that makes you different.~
+SAY ~Most won't call caging a goblin slavery. Guess that makes you different.~
 IF ~~ + BFSMk.WorldNorm
 END
 
@@ -34,7 +34,7 @@ SAY ~Knew it. Knew there was some catch. So, what do you want?~
 END
 
 IF ~~ BFSMk.Shutup2
-SAY ~Been around the drow too long. Be quiet, M'khiin.~
+SAY ~Been around the drow too long.~
 IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",3) RealSetGlobalTimer("BFSKinFriendshipTalksTimer","GLOBAL",3600)~ EXIT
 END
 
@@ -50,7 +50,7 @@ IF ~~ + BFSMk.WorldNorm
 END
 
 IF ~~ BFSMk.Shutup
-SAY ~Didn't think you were. Was trying to figure out what you *did* want.~
+SAY ~Didn't think you were. Was trying t'figure out what you *did* want.~
 IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",3) RealSetGlobalTimer("BFSKinFriendshipTalksTimer","GLOBAL",3600)~ EXIT
 END
 
@@ -63,12 +63,12 @@ SAY ~That's how it works. The strong take from the weak. From those smaller. Mak
 END
 
 IF ~~ BFSMk.HelpBefore
-SAY ~Maybe. Still hard to believe.~
+SAY ~Maybe. Still hard t'believe.~
 IF ~~ + BFSMk.Cont
 END
 
 IF ~~ BFSMk.EarnTrust
-SAY ~Would be nice to be wrong for once. Guess we'll see. I'm not going anywhere.~
+SAY ~Would be nice t'be wrong. Guess we'll see. I'm not going anywhere.~
 IF ~~ + BFSMk.Cont
 END
 
@@ -80,9 +80,7 @@ END
 IF ~~ BFSMk.Cont
 SAY ~Haven't been around others much. Not since leaving the tribe.~
 = ~The drow's hospitality doesn't count. Being prodded with sticks and all.~
-= ~Not much good at words anyway.~ 
 ++ ~Relax, M'khiin, I don't have any expectations.~ + BFSMk.Cont2
-++ ~I could tell. No, really.~ + BFSMk.Cont2
 + ~Class(Player1,BARD)~ + ~Then it's a good thing I talk enough for both of us.~ + BFSMk.Cont2
 + ~!Class(Player1,SHAMAN)~ + ~But you're a shaman. You talk to spirits all the time, don't you?~ + BFSMk.ShamanConverse
 + ~Class(Player1,SHAMAN)~ + ~But you're a shaman too. Talking to spirits is what we *do*.~ + BFSMk.ShamanConverse
@@ -90,7 +88,7 @@ SAY ~Haven't been around others much. Not since leaving the tribe.~
 END
 
 IF ~~ BFSMk.ShamanConverse
-SAY ~Spirits don't need small talk. Makes it easier that way.~ 
+SAY ~Spirits don't need small talk. Makes it easier.~ 
 IF ~~ + BFSMk.Cont2
 END
 
@@ -111,29 +109,29 @@ SAY ~Been thinking. How much food can I take?~
 END
 
 IF ~~ BFSMk.EqualFoodM
-SAY ~Sounds good. Don't solve things though. I'm smaller. Won't need as much.~ 
-= ~Too-tall may need more. Keeps sharing with that rat of his.~
+SAY ~Don't solve things though. I'm smaller. Won't need as much.~ 
+= ~Too-tall may need more. Keeps sharing with that rodent of his.~
 IF ~~ + BFSMk.FoodTell
 END
 
 IF ~~ BFSMk.EqualFood
-SAY ~Sounds good. Don't solve things though. I'm smaller. Won't need as much.~
+SAY ~Don't solve things though. I'm smaller. Won't need as much.~
 IF ~~ + BFSMk.FoodTell
 END
 
 IF ~~ BFSMk.FoodSmallM
-SAY ~Sounds good. Don't solve things though. There's days I need more. Less on others.~
-= ~And too-tall keeps sharing with that rat of his.~
+SAY ~Don't solve things though. Some days I need more. Less on others.~
+= ~And too-tall keeps sharing with that rodent of his.~
 IF ~~ + BFSMk.FoodTell
 END
 
 IF ~~ BFSMk.FoodSmall
-SAY ~Sounds good. Don't solve things though. There's days I need more. Less on others.~
+SAY ~Don't solve things though. Some days I need more. Less on others.~
 IF ~~ + BFSMk.FoodTell
 END
 
 IF ~~ BFSMk.FoodTell
-SAY ~What do you like to eat?~
+SAY ~What'd'you like t'eat?~
 ++ ~I can't pick a favourite.~ + BFSMk.NoFave
 ++ ~Roasted chicken. You can't go wrong with a classic.~ + BFSMk.Chicken
 ++ ~I prefer a hearty stew. Simple but delicious.~ + BFSMk.StewYum
@@ -151,7 +149,7 @@ SAY ~Beggars can't be choosers. Know that.~
 END
 
 IF ~~ BFSMk.Chicken
-SAY ~Mmm. They taste pretty good.~ 
+SAY ~Like it too.~ 
 = ~If we come by one, I'll leave more for you.~ 
 ++ ~No. You don't have to go hungry on my account.~ +  BFSMk.MealTalkEnd
 ++ ~Fair enough. If we come across anything you like, tell me and I'll return the favor.~ + BFSMk.MealTalkEnd
@@ -159,7 +157,7 @@ SAY ~Mmm. They taste pretty good.~
 END
 
 IF ~~ BFSMk.StewYum
-SAY ~Stew's not bad. Learned to make some after leaving the tribe.~
+SAY ~Stew's not bad. Learned t'make some after leaving the tribe.~
 = ~If we come by it, I'll leave more for you.~ 
 ++ ~No. You don't have to go hungry on my account.~ +  BFSMk.MealTalkEnd
 ++ ~Fair enough. If we come across anything you like, tell me and I'll return the favor.~ + BFSMk.MealTalkEnd
@@ -174,9 +172,9 @@ SAY ~Ain't tried that. If we come by it, I'll leave more for you.~
 END
 
 IF ~~ BFSMk.WhyDiscussFood
-SAY ~The tribe fought over food. The fastest or strongest ate first. Everyone else got what's left.~
+SAY ~Tribe fought over food. The fastest or strongest ate first. Everyone else got what's left.~
 = ~Goblins settle for anything. Have to. We don't farm. Don't grow. We steal, we scrounge, we dig through what others throw away. Scraps of scraps.~ 
-= ~Need to know where I stand. What's my share?~
+= ~Need t'know where I stand. What's my share?~
 + ~InParty("Minsc")~ + ~As a member of this group, you receive an equal share of every meal.~ + BFSMk.EqualFoodM
 + ~!InParty("Minsc")~ + ~As a member of this group, you receive an equal share of every meal.~ + BFSMk.EqualFood
 + ~InParty("Minsc")~ + ~Goblins are small. You don't need much.~ + BFSMk.FoodSmallM
@@ -197,7 +195,7 @@ END
 
 // PID 
 IF ~IsGabber(Player1)~ BFSMk.PID    			
-SAY ~Something to say?~ 
+SAY ~Something t'say?~ 
 ++ ~I have a few questions.~ + BFSMk.QuestionHub
 ++ ~Let's keep moving.~ + BFSMk.PIDEnd
 END
@@ -217,6 +215,7 @@ END
 
 IF ~~ BFSMk.SpiritOrigin
 SAY ~Didn't learn. Not like that. Words don't matter. You gotta listen.~
+// expand here
 IF ~~ EXIT
 END
 
@@ -228,14 +227,13 @@ SAY ~No. Here is better.~
 END
 
 IF ~~ BFSMk.HappyNotWithGoblins
-SAY ~Got a full belly. A safe spot to sleep. Had worse.~  
+SAY ~Got a full belly. A safe spot t'sleep. Had worse.~  
 IF ~~ EXIT
 END
 
 IF ~~ BFSMk.FixThings
-SAY ~Better to talk to strangers. Tribe heard me, didn't understand.~
-= ~Can't fix what doesn't know it's broken. Maybe it's just their way.~
-= ~Wasn't for me. So I left.~
+SAY ~Better t'talk t'strangers. Tribe heard me, didn't understand, didn't want to.~
+= ~So I left.~
 IF ~~ EXIT
 END
 
