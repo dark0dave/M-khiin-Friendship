@@ -12,6 +12,6 @@ BEGIN ~M'Khiin Friendship for Siege of Dragonspear~
 APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~
 UNLESS ~CD_STATE_NOTVALID~
 
-// Dialogues
-COMPILE ~kinfriendship/d/BDMKHIIN.d~
-EXTEND_TOP ~MKHIIN.bcs~ ~kinfriendship/scripts/MKHIIN.baf~
+// Dialogues & Scripts
+COMPILE ~kinfriendship/d/BDMKHIIJ.d~
+EXTEND_TOP ~BDMKHIIN.bcs~ ~kinfriendship/scripts/MKHIIN.baf~
