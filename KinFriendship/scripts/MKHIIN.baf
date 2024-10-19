@@ -125,3 +125,13 @@ THEN
 		StartDialogNoSet(Player1)
 END
 
+// Jegg Made M'Khiin Armor
+IF
+  HasItem("bdchan01",Myself)
+  Global("BFSMkArmor","GLOBAL",0)
+THEN
+  RESPONSE #100
+    SetGlobal("BFSMkArmor","GLOBAL",1)
+    StartDialogNoSet([PC])
+END
+

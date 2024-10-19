@@ -3,10 +3,27 @@ I_C_T BDZIATAR 0 BFSMk.Ziatar
 == BDMKHIIJ IF ~InParty("MKHIIN") InMyArea("MKHIIN") !StateCheck("MKHIIN",CD_STATE_NOTVALID)~ THEN ~Simple. Walked right in.~
 END
 
+// Allow PC to stand up for M'Khiin during Jegg's dialogue
+EXTEND_BOTTOM BDJEGG 94
+++ ~M'Khiin is my companion. Show her some respect.~ + BFSMk.Jegg1
+++ ~We need every fighter we can get. Even a goblin.~ + BFSMk.Jegg1
+++ ~Gnolls carry swords on occasion, you know?~ + BFSMk.Jegg1
+END
+
+CHAIN BDJEGG BFSMk.Jegg1
+~Do you want the armor or not?~
+END
+IF ~~ THEN DO ~StartCutSceneMode()
+ClearAllActions()
+SetGlobalTimer("bd_205_mkhiin_armor_timer","global",EIGHT_HOURS)
+SetGlobal("bd_205_mkhiin_armor","global",1)
+StartCutSceneEx("bdcutjeg",TRUE)
+~ EXIT
+
 APPEND BDMKHIIJ
 
 // Talk 1- she appreciates that you helped her, but it was still a little sus of you
-IF WEIGHT #-2 ~Global("BFSKinFriendshipTalks","GLOBAL",2)~ THEN BEGIN BFSMk.Talk1
+IF WEIGHT #-3 ~Global("BFSKinFriendshipTalks","GLOBAL",2)~ THEN BEGIN BFSMk.Talk1
 SAY ~Why'd you help me? Goblins don't get kindness for free.~
 ++ ~It felt like the right thing to do.~ + BFSMk.Right
 ++ ~I don't believe in enslaving anyone.~ + BFSMk.Slavery
@@ -61,7 +78,7 @@ END
 
 IF ~~ BFSMk.WorldNorm
 SAY ~That's how it works. The strong take from the weak. From those smaller. Makes life tricky for goblins. Lots of folks are taller and stronger.~
-= ~Numbers could help, but I've never had those either.~
+= ~Numbers could help, but I've never had those.~
 ++ ~M'khiin, I've helped you before. That has to count for something.~ + BFSMk.HelpBefore
 ++ ~I'm not asking you to trust me right away. I'm asking you to give me a chance to earn it.~ + BFSMk.EarnTrust
 ++ ~Just do your part and we won't have any issues. We don't need to be friends.~ + BFSMk.NotFriends
@@ -103,7 +120,7 @@ IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",3) RealSetGlobalTimer("BFSK
 END
 
 // Talk 2 - A matter of food / resources and fitting in
-IF WEIGHT #-1 ~Global("BFSKinFriendshipTalks","GLOBAL",4)~ THEN BEGIN BFSMk.Talk2
+IF WEIGHT #-2 ~Global("BFSKinFriendshipTalks","GLOBAL",4)~ THEN BEGIN BFSMk.Talk2
 SAY ~Been thinking. How much food can I take?~  
 ++ ~Why are we even having this conversation?~ + BFSMk.WhyDiscussFood
 + ~InParty("Minsc")~ + ~As a member of this group, you receive an equal share of every meal.~ + BFSMk.EqualFoodM
@@ -137,7 +154,7 @@ END
 
 IF ~~ BFSMk.FoodTell
 // Word this line better OMG
-SAY ~What food do you prefer?~
+SAY ~What's your pick?~
 ++ ~I can't pick a favourite.~ + BFSMk.NoFave
 ++ ~Roasted chicken. You can't go wrong with a classic.~ + BFSMk.Chicken
 ++ ~I prefer a hearty stew. Simple but delicious.~ + BFSMk.StewYum
@@ -209,7 +226,7 @@ IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",5) RealSetGlobalTimer("BFSK
 END
 
 // Scenery Talks
-// Dragon Cave Warning
+// Dragon Cave Warning, she wants to keep the team safe but she's not outright saying that yet 
 IF ~Global("BFSMkDragon","GLOBAL",1)~ BFSMk.DragonWarning
 SAY ~Spirits stir. Something's up ahead.~
 ++ ~It's nothing we can't handle.~ + BFSMk.DragonThanks
@@ -241,7 +258,7 @@ SAY ~Hmph. You help 'em, something bad happens, now they don't like you anymore.
 = ~Just a scorch mark on the ground. You're still the same <CHARNAME>.~
 ++ ~M'Khiin, are you trying to comfort me?~ + BFSMk.Console
 ++ ~Being judged for *what* you are, rather than who you are, is the worst.~ + BFSMk.Console
-++ ~I don't need your sympathy, M'Khiin. Back off..~ + BFSMk.NoScrubs
+++ ~I don't need your sympathy, M'Khiin. Back off.~ + BFSMk.NoScrubs
 ++ ~Don't even think about comparing yourself to me.~ + BFSMk.NoComparison
 END
 
@@ -294,17 +311,44 @@ SAY ~Why not? Seems similar. People think you're a monster. Maybe you are, maybe
 IF ~~ THEN DO ~SetGlobal("BFSMkBoareskyr","GLOBAL",4)~ EXIT
 END
 
+// Jegg's Leathers Equipped 
+IF ~Global("BFSMkArmor","GLOBAL",1)~ THEN BFSMk.ArmorThanks
+SAY ~Fits snug. Feels right.~ 
+++ ~It looks good on you.~ + BFSMk.ArmorLooksGood
+++ ~I'm sorry for Jegg's behaviour back there.~ + BFSMk.ArmorRude
+++ ~You look ridiculous but at least it'll stop a few arrows.~ + BFSMk.ArmorRidicule
+END
+
+IF ~~ BFSMk.ArmorRude
+SAY ~Wasn't you who said those words. Besides rude's nothing new. Have dealt with worse.~
+= ~Thank you, <CHARNAME>.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkArmor","GLOBAL",2)~ EXIT
+END
+
+
+IF ~~ BFSMk.ArmorLooksGood
+SAY ~Not often goblins get their own armor.~ 
+= ~Thank you, <CHARNAME>.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkArmor","GLOBAL",2)~ EXIT
+END
+
+
+IF ~~ BFSMk.ArmorRidicule
+SAY ~Hope so. Don't plan on testing it though.~ 
+= ~Thank you, <CHARNAME>.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkArmor","GLOBAL",2)~ EXIT
+END
+
 // Player Initiated Dialogue (PID)
 IF ~IsGabber(Player1)~ BFSMk.PID    			
 SAY ~Something to say?~ 
-+ ~RandomNum(4,1)~ + ~How are you doing?~ + BFSMk.HowU1
-+ ~RandomNum(4,2)~ + ~How are you doing?~ + BFSMk.HowU2
-+ ~RandomNum(4,3)~ + ~How are you doing?~ + BFSMk.HowU3
-+ ~HPPercentLT("MKHIIN",80) RandomNum(4,4)~ + ~How are you doing?~ + BFSMk.HowU4
++ ~RandomNum(5,1)~ + ~How are you doing?~ + BFSMk.HowU1
++ ~RandomNum(5,2)~ + ~How are you doing?~ + BFSMk.HowU2
++ ~RandomNum(5,3)~ + ~How are you doing?~ + BFSMk.HowU3
++ ~RandomNum(5,4)~ + ~How are you doing?~ + BFSMk.HowU4
++ ~HPPercentLT("MKHIIN",80) RandomNum(5,5)~ + ~How are you doing?~ + BFSMk.HowU5
 + ~Global("BFSKinShamanPID","GLOBAL",0)~ + ~How did you learn to speak with spirits?~ + BFSMk.ISeeDeadPeople
-+ ~Global("BFSKinTribePID","GLOBAL",0)~ + ~Why did you leave your tribe?~ + BFSMk.MkhiinSolo
 + ~Global("BFSKinFearPID","GLOBAL",0)~ + ~Is there anything you fear?~ + BFSMk.FearIsTheMindKiller
-+ ~Global("BFSKinSpellPID","GLOBAL",0)~ + ~What's your favourite spell?~ + BFSMk.MagicHands
 + ~GlobalGT("BFSKinFriendshipTalks","GLOBAL",4) Global("BFSKinFaveFoodKin","GLOBAL",0)~ + ~I never got around to asking you. What's your favorite thing to eat?~ + BFSMk.OmNomKin
 ++ ~Let's keep moving.~ + BFSMk.PIDEnd
 END
@@ -315,16 +359,21 @@ IF ~~ EXIT
 END
 
 IF ~~ BFSMk.HowU2
-SAY ~Could be better. Could be worse.~ 
+SAY ~I'm doing.~ 
 IF ~~ EXIT
 END
 
 IF ~~ BFSMk.HowU3
-SAY ~Couldn't be better!~ 
+SAY ~How am I doing *what*?~ 
 IF ~~ EXIT
 END
 
 IF ~~ BFSMk.HowU4
+SAY ~Compared to who?~ 
+IF ~~ EXIT
+END
+
+IF ~~ BFSMk.HowU5
 SAY ~Still standing. But barely.~ 
 IF ~~ EXIT
 END
@@ -335,24 +384,13 @@ IF ~~ EXIT
 END
 
 IF ~~ BFSMk.OmNomKin
-SAY ~Anything that doesn't try to eat me first.~ 
-IF ~~ THEN DO ~SetGlobal("BFSKinSpellPID","GLOBAL",1)~ EXIT
-END
-
-IF ~~ BFSMk.MagicHands
-SAY ~Whatever keeps me alive the longest.~
+SAY ~Whatever doesn't try to eat me first.~ 
 IF ~~ THEN DO ~SetGlobal("BFSKinFaveFoodKin","GLOBAL",1)~ EXIT
-IF ~~ EXIT
 END
 
 IF ~~ BFSMk.ISeeDeadPeople
 SAY ~Didn't learn. Not like that. Words don't matter. You gotta listen.~
 IF ~~ THEN DO ~SetGlobal("BFSKinShamanPID","GLOBAL",1)~ EXIT
-END
-
-IF ~~ BFSMk.MkhiinSolo
-SAY ~Didn't fit. Simple as that.~
-IF ~~ THEN DO ~SetGlobal("BFSKinTribePID","GLOBAL",1)~ EXIT
 END
 
 IF ~~ BFSMk.FearIsTheMindKiller
