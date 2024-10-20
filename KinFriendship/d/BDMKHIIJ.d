@@ -1,3 +1,6 @@
+/* Get M'Khiin to slowly trust the PC over time. Forming her main friendship arc for SoD.
+Then, in BG 2, have her continue her trust arc. Extending it to her helping her fellow goblins & finding her place. */ 
+
 // Interjections 
 I_C_T BDZIATAR 0 BFSMk.Ziatar
 == BDMKHIIJ IF ~InParty("MKHIIN") InMyArea("MKHIIN") !StateCheck("MKHIIN",CD_STATE_NOTVALID)~ THEN ~Simple. Walked right in.~
@@ -153,7 +156,7 @@ IF ~~ + BFSMk.FoodTell
 END
 
 IF ~~ BFSMk.FoodTell
-// Word this line better OMG
+// Word this next line better OMG facedesk
 SAY ~What's your pick?~
 ++ ~I can't pick a favourite.~ + BFSMk.NoFave
 ++ ~Roasted chicken. You can't go wrong with a classic.~ + BFSMk.Chicken
@@ -224,6 +227,49 @@ SAY ~I like that. Wouldn't work in a goblin tribe though.~
 = ~Good thing I'm not in one.~ 
 IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",5) RealSetGlobalTimer("BFSKinFriendshipTalksTimer","GLOBAL",3600)~ EXIT
 END
+
+// Talk 3 - Spirit Dance
+
+// Talk 4 - What do friends do?
+/* Still not fully written / not coded 
+SAY ~Turns out we're pals now. Or…something like pals.~
+++ ~Don't presume. We are certainly not friends.~ + BFSMk.FriendsHellNo
+++ ~So you're comfortable admitting it now?~ + BFSMk.FriendshipComfortable
+++ ~I wouldn't claim we're friends yet. But, with time, we'll get there.~ + BFSMk.FriendshipConfusing
+++ ~You're going to make this awkward, aren't you?~ + BFSMk.FriendshipConfusing
+END
+
+IF ~~ BFSMk.FriendsHellNo
+SAY ~Oh? Good. Means I don't have to fumble through this.~ 
+IF ~~ EXIT
+END
+
+IF ~~ BFSMk.Comfortable
+SAY ~Getting there.~ 
+IF ~~ + BFSMk.FriendshipConfusing
+END
+
+IF ~~ BFSMk.FriendshipConfusing
+SAY ~Haven't had friends before. Not sure what's expected. Thought we'd figure it out together.~ 
+= ~So…Friends talk. Friends drink. Friends smile. I can do all of that.~
+++ ~You're on the right track.~ + BFSMk.FriendshipEncourage
+++ ~All of those things play a part, yes, but at the appropriate times.~ + BFSMk.FriendshipEncourage
+++ ~You're hopeless at this.~ + BFSMk.Hopeless
+++ ~I take back what I said. We're never going to be friends.~ + BFSMk.FriendsHellNo
+END
+
+IF ~~ BFSMk.Hopeless
+SAY ~Only if I give up. Not planning to.~ 
+IF ~~ + BFSMk.FriendshipEncourage
+END
+
+IF ~~ BFSMk.FriendshipEncourage
+SAY ~What else…?~
+++ ~Easy, M'Khiin. Start by asking me about myself. My hobbies. Or interests.~
+++ ~We don't have to talk. Sometimes friends can simply exist in the same space. Being comfortably silent.~
+*/
+
+// Talk 5 - Undecided
 
 // Scenery Talks
 // Dragon Cave Warning, she wants to keep the team safe but she's not outright saying that yet 
@@ -338,6 +384,77 @@ SAY ~Hope so. Don't plan on testing it though.~
 = ~Thank you, <CHARNAME>.~ 
 IF ~~ THEN DO ~SetGlobal("BFSMkArmor","GLOBAL",2)~ EXIT
 END
+
+/* Post 'Diplomacy' meeting with Commanders and Caelar
+Still uncoded
+
+// Foreshadowing the ‘You're captured, I need to run' eventuality 
+SAY ~Words didn't fix much.~ 
++ ~Class(Player1,BARD)~ + ~Only because they weren't the right words.~ + BFSMk.Diplomacy
+++ ~Actions often speak louder but words can still change hearts.~ + BFSMk.Diplomacy
+++ ~This why why I prefer reaching for my weapon first.~ + BFSMk.Stabbity
++ ~Class(Player1,THIEF_ALL)~ + ~A well-aimed strike can communicate what words cannot.~ + BFSMk.Stabbity
+END
+
+IF ~~ BFSMk.Diplomacy
+SAY ~Maybe. Doesn't matter though. If they won't heed a <PRO_RACE>, then a goblin has no chance.~ 
+IF ~~ + BFSMk.FreedomOrDeath
+END
+
+IF ~~ BFSMk.Stabbity
+SAY ~Right. Need to make a point. Sometimes with a knife. Faster that way.~ 
+IF ~~ + BFSMk.FreedomOrDeath
+END
+
+IF ~~ BFSMk.FreedomOrDeath
+SAY ~You've stood by me. At least so far. I won't let them drag you away.~ 
+= ~Too many voices deciding your fate. Not letting *you* choose your path. Doesn't sit well with me.~ 
+++ ~If it means saving lives, I would have gladly followed Caelar.~ + BFSMk.SaveYourself
+++ ~It was worth listening to Caelar's terms, even if I couldn't accept them.~ +BFSMk.SaveYourself
+++ ~Nobody is forcing me to go anywhere. Trust me.~ + BFSMk.TrustE
+END
+
+IF ~~ BFSMk.SaveYourself
+SAY ~Someone always needs saving. That won't change. Freedom's worth more.~
+IF ~~ + BFSMk.Premonition
+END
+
+IF ~~ BFSMk.TrustE
+SAY ~I do. I trust you.~ 
+IF ~~ + BFSMk.SaveYourself
+END
+
+IF ~~ BFSMk.Premonition
+SAY ~Trouble's never far. Not with you. Someday it'll grow too much. Become the kind I can't save you from.~
+= ~Even if I want to. Some changes beyond a goblin's power.~ 
+++ ~While I appreciate your bravery, M'Khiin, I never want you to place yourself in danger for me.~ + BFSMk.PlaceInDanger
+++ ~I'd never lower myself to needing your help.~ + BFSMk.HelpEww
+++ ~I don't believe that, I know how strong you are. You're capable of more than you think.~ + BFSMk.Capable
+END
+
+IF ~~ BFSMk.PlaceInDanger
+SAY ~...What? We're already in danger. Have been this entire time.~
+IF ~~ + BFSMK.FreeForMe
+END
+
+IF ~~ BFSMk.HelpEww
+SAY ~Might not have a choice. Not if those too-talls are deciding.~
+= ~Be careful.~ 
+IF ~~ EXIT
+END
+
+IF ~~ BFSMk.Capable
+SAY ~Not a matter of being capable.~ 
+IF ~~ + BFSMk.FreeForMe
+END 
+
+IF ~~ BFSMk.FreeForMe
+SAY ~Broke free of a cage once. Could do it again. Easier if you're there too.~ 
+= ~But if those too-talls are deciding… I won't get the chance.~
+= ~Be careful.~ 
+IF ~~ EXIT
+END
+*/ 
 
 // Player Initiated Dialogue (PID)
 IF ~IsGabber(Player1)~ BFSMk.PID    			
