@@ -1,6 +1,9 @@
 /* 2024.10.22. Dialogue Completed. Proofreading / Rewrites not started. */
 
-/* Get M'Khiin to slowly trust the PC over time - completing her main friendship arc for SoD. */ 
+/* Get M'Khiin to slowly trust the PC over time - completing her main friendship arc for SoD. 
+Three main themes: trust, strength in numbers, leadership.*/ 
+/* BG 2 Content will start in the Temple Ruins area - and focus on M'Khiin becoming a leader, helping her fellow goblins, following up on her friendship arc here.
+She couldn't save the PC from imprisonment. Not as a lone goblin. She needs to become a leader and build a place where she belongs. */ 
 
 // Allow PC to stand up for M'Khiin during Jegg's dialogue
 EXTEND_BOTTOM BDJEGG 94
@@ -223,29 +226,49 @@ SAY ~I like that. Wouldn't work in a goblin tribe though.~
 IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",5) RealSetGlobalTimer("BFSKinFriendshipTalksTimer","GLOBAL",3600)~ EXIT
 END
 
-// Talk 3 - Spirit Dance / Nightmare talk
-/* Still not fully written / not coded */
+// Talk 3 - Nightmare talk
 
 IF ~Global("BFSKinFriendshipTalks","GLOBAL",6)~ THEN BEGIN BFSMk.Talk3
 SAY ~You get nightmares. Sometimes. When you sleep.~
-++ ~Have you noticed? I rather hoped nobody would.~ + BFSMk.SameBestie
-++ ~I guess wishing they'd go away as naive of me.~ + BFSMk.SameBestie
+++ ~I guess wishing they'd go away was a bit naive.~ + BFSMk.SameBestie
 ++ ~It's an occupational hazard.~ + BFSMk.SameBestie
+++ ~As opposed to when I'm awake?~ + BFSMk.DreamSarcasm
 END
 
 IF ~~ BFSMk.SameBestie
-SAY ~I had nightmares too. When I was back in my tribe. When the drow caged me.~ 
+SAY ~I had nightmares too. Back in the tribe. And when the drow caged me.~ 
+++ ~Was it difficult to leave?~ + BFSMk.LeavingTribe
+++ ~Baeloth shouldn't have imprisoned you.~ + BFSMk.BaelothBad
+END
+
+IF ~~ BFSMk.BaelothBad
+SAY ~Trickery's in his nature. I shouldn't have fallen for it.~
+= ~But when you're desperate, you easily fall for a clever tongue.~
+++ ~You've learned from your mistakes. Now you're stronger for it.~ + BFSMk.HarderBetterFasterStronger
+END
+
+IF ~~ BFSMk.LeavingTribe
+SAY ~It had never been done before. The only thing scarier than leaving was things staying the same.~
+= ~So I ran. And I've been running ever since.~
+++ ~You've learned from your mistakes. Now you're stronger for it.~ + BFSMk.HarderBetterFasterStronger
+END
+
+IF ~~ BFSMk.HarderBetterFasterStronger
+SAY ~Or maybe I know better what to avoid.~
 IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",7) RealSetGlobalTimer("BFSKinFriendshipTalksTimer","GLOBAL",3600)~ EXIT
 END
 
-// Write the above talk. 
+IF ~~ BFSMk.DreamSarcasm
+SAY ~Life can be a nightmare too.~ 
+IF ~~ DO ~SetGlobal("BFSKinFriendshipTalks","GLOBAL",7) RealSetGlobalTimer("BFSKinFriendshipTalksTimer","GLOBAL",3600)~ EXIT
+END
 
 // Talk 4 - What do friends do?
 IF ~Global("BFSKinFriendshipTalks","GLOBAL",8)~ THEN BEGIN BFSMk.Talk4
 SAY ~Seems we're pals now. Or …somethin' like it.~
-++ ~Don't presume. We are certainly not friends.~ + BFSMk.FriendsHellNo
+++ ~Don't presume. We are definitely not friends.~ + BFSMk.FriendsHellNo
 ++ ~So you're comfortable admitting it now?~ + BFSMk.FriendshipComfortable
-++ ~I wouldn't claim we're friends yet. But, with time, we'll get there.~ + BFSMk.FriendshipConfusing
+++ ~I wouldn’t say we're friends yet. But give it time.~ + BFSMk.FriendshipConfusing
 ++ ~You're going to make this awkward, aren't you?~ + BFSMk.FriendshipConfusing
 END
 
@@ -261,15 +284,15 @@ END
 
 IF ~~ BFSMk.FriendshipConfusing
 SAY ~Haven't had friends before. Don't know how it works.~ 
-= ~Talking, drinking, smilingn - I can do those. Doesn't seem like enough though.~
-++ ~You were on the right track.~ + BFSMk.FriendshipEncourage
+= ~Talking, drinking, maybe a smile – I can do those. But it feels like there's more to it.~
+++ ~You were on the right path.~ + BFSMk.FriendshipEncourage
 ++ ~All of those things play a part, yes, but at the appropriate time.~ + BFSMk.FriendshipEncourage
 ++ ~You're hopeless at this.~ + BFSMk.Hopeless
 ++ ~I take back what I said. We're never going to be friends.~ + BFSMk.FriendsHellNo
 END
 
 IF ~~ BFSMk.Hopeless
-SAY ~Only if I give up. Not planning to.~ 
+SAY ~Only if I give up. And I'm not planning to.~ 
 IF ~~ + BFSMk.FriendshipEncourage
 END
 
@@ -317,7 +340,7 @@ SAY ~You spend time around plants.~
 END
 
 IF ~~ BFSMk.PlayerMage
-SAY ~You scribble in your magic book.~ 
+SAY ~You scribble spells in your magic book.~ 
 ++ ~There's more to me than those hobbies. Just as there's more to you than first appearances suggest.~ + BFSMk.FirstAppearances
 ++ ~Sounds like you have me all figured out.~ + BFSMk.PinnedYa
 ++ ~That doesn't sound like me at all.~ + BFSMk.DeadWrongActually
@@ -331,7 +354,7 @@ SAY ~You pray. You chant words.~
 END
 
 IF ~~ BFSMk.PlayerRogue
-SAY ~You swipe things when folks aren't watching.~
+SAY ~You swipe things when no one's watching.~
 ++ ~There's more to me than those hobbies. Just as there's more to you than first appearances suggest.~ + BFSMk.FirstAppearances
 ++ ~Sounds like you have me all figured out.~ + BFSMk.PinnedYa
 ++ ~That doesn't sound like me at all.~ + BFSMk.DeadWrongActually
@@ -345,7 +368,7 @@ SAY ~You talk. A lot.~
 END
 
 IF ~~ BFSMk.PlayerFighter
-SAY ~You swing your weapon around.~ 
+SAY ~You swing your weapon around all day.~ 
 ++ ~There's more to me than those hobbies. Just as there's more to you than first appearances suggest.~ + BFSMk.FirstAppearances
 ++ ~Sounds like you have me all figured out.~ + BFSMk.PinnedYa
 ++ ~That doesn't sound like me at all.~ + BFSMk.DeadWrongActually
@@ -369,13 +392,13 @@ END
 // Scenery Talks
 
 // Post Meeting Caelar
-// GDI France stop tossing your children across the school's fence, thanks :) 
+// French Parents stop tossing your children over the school's fence, thanks :) 
 IF ~Global("BFSMkBridge","GLOBAL",1)~ THEN BEGIN BFSMk.BridgeConvo
 SAY ~Stupid Nothing good comes from bringing the long-dead back.~
 + ~Class(Player1,SHAMAN)~ + ~But we're shamans. We speak with spirits all the time.~ + BFSMk.BadIdeaS
 + ~!Class(Player1,SHAMAN)~ + ~But you're a shaman. You speak with ghosts - with spirits - all the time.~  + BFSMk.BadIdea
-++ ~Too bad Caelar isn't interested in listening to sense.~ + BFSMk.CaelarSaysYolo
-++ ~Even if we're condemning innocents to eternal torment?~ + BFSMk.PlanescapeTormentIMissYou
+++ ~Too bad Caelar isn't interested in listening to reason.~ + BFSMk.CaelarSaysYolo
+++ ~Even if it means condemning innocents to eternal torment?~ + BFSMk.PlanescapeTormentIMissYou
 END 
 
 IF ~~ BFSMk.BadIdeaS
@@ -394,7 +417,7 @@ IF ~~ + BFSMk.FollowingTheTrail
 END
 
 IF ~~ BFSMk.CaelarSaysYolo
-SAY ~The more dumb following the dumb.~ 
+SAY ~More fools following fools.~ 
 IF ~~ + BFSMk.FollowingTheTrail
 END
 
@@ -431,24 +454,23 @@ IF ~~ DO ~SetGlobal("BFSMkDragon","GLOBAL",4)~ EXIT
 END
 
 // Bhaal Temple - Post Killing Mindflayer
-
 IF ~Global("BFSMkBhaal","GLOBAL",1)~ THEN BEGIN BFSMk.BhaalspawnTalk
 SAY ~This place belonged to your pa?~
-++ ~Yes. This was a temple of Bhaal, at least before, and I am a Bhaalspawn.~ + BFSMk.BhaalspawnAdmission
+++ ~Yes. This was once a temple of Bhaal, and I am a Bhaalspawn.~ + BFSMk.BhaalspawnAdmission
 ++ ~I was wondering when we'd have this conversation. Yes, I'm a Bhaalspawn. Does it matter?~ + BFSMk.BhaalspawnAdmission
 ++ ~Look around. It hasn't belonged to him for some time.~ + BFSMk.Ruins
-++ ~There's only one father I acknowledge - and it's not this one.~ + BFSMk.MightBeYourFatherButNotYourDaddy
+++ ~TThere's only one father I recognize - and it's not this one.~ + BFSMk.MightBeYourFatherButNotYourDaddy
 ++ ~M'Khiin. I'm. Not. Interested.~ + BFSMk.StopTalkingNow
 END
 
 IF ~~ BFSMk.BhaalspawnAdmission
 SAY ~Heard about that. People whisper back in camp. Some scared, some not so much. Don't see why it matters.~
-= ~This place needs a good scrubbing. Hope you weren't planning on moving in.~ 
+= ~This place needs a good scrubbing. Hope you weren't thinking of moving in.~ 
 IF ~~ DO ~SetGlobal("BFSMkBhaal","GLOBAL",2)~ EXIT
 END 
 
 IF ~~ BFSMk.StopTalkingNow
-SAY ~Got it, got it.~
+SAY ~Got it. Shutting up.~
 IF ~~ DO ~SetGlobal("BFSMkBhaal","GLOBAL",2)~ EXIT
 END
 
@@ -458,7 +480,7 @@ IF ~~ DO ~SetGlobal("BFSMkBhaal","GLOBAL",2)~ EXIT
 END
 
 IF ~~ BFSMk.Ruins
-SAY ~Agreed. This place needs a good scrubbing. Hope you weren't planning on moving in.~
+SAY ~Agreed. This place needs a good scrubbing. Hope you weren't thinking of moving in.~
 IF ~~ DO ~SetGlobal("BFSMkBhaal","GLOBAL",2)~ EXIT
 END
 
@@ -538,8 +560,7 @@ END
 
 
 IF ~~ BFSMk.ArmorLooksGood
-SAY ~Not often goblins get their own armor.~ 
-= ~Thank you, <CHARNAME>.~ 
+SAY ~Thank you, <CHARNAME>.~ 
 IF ~~ THEN DO ~SetGlobal("BFSMkArmor","GLOBAL",2)~ EXIT
 END
 
@@ -550,14 +571,71 @@ SAY ~Hope so. Don't plan on testing it though.~
 IF ~~ THEN DO ~SetGlobal("BFSMkArmor","GLOBAL",2)~ EXIT
 END
 
-/* Post 'Diplomacy' meeting with Commanders and Caelar
-Still uncoded
+// Post Meeting with Other Gobbos 
 
-// Foreshadowing the ‘You're captured, I need to run' eventuality 
+IF ~Global("BFSMkGobbos","GLOBAL",1)~ THEN BEGIN BFSMk.Gobbos
+SAY ~Glad that's over with. Never going back. *Never*.~
+++ ~You don't have to, M'Khiin. You have a place with us for as long as you want it.~ + BFSMk.HomeIsWhereTheGobbosArent
+++ ~They had a point. You could do much good for your people.~ + BFSMk.MyPeopleNeedMe
+++ ~Are you done with the dramatics?~ + BFSMk.AreYouDone
+END 
+
+IF ~~ BFSMk.AreYouDone
+SAY ~I'm done.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkGobbos","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.HomeIsWhereTheGobbosArent
+SAY ~Thank you. Already chose who I want to travel with.~ 
+= ~Already chose you.~ 
+++ ~Do you feel like you're ready for a hug yet? ~ + BFSMk.WannaHug
+++ ~For what it's worth, I'm proud of you.~ + BFSMk.GoblinTearUp
+++ ~Then let's move on.~ + BFSMk.LetsMoveOn
+END
+
+IF ~~ BFSMk.WannaHug
+SAY ~...What? No! Trust you enough to know you won't stab me.~
+= ~Even consider you a friend. But hugs? Not happening.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkGobbos","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.LetsMoveOn
+SAY ~Right behind you.~
+IF ~~ THEN DO ~SetGlobal("BFSMkGobbos","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.GoblinTearUp
+SAY ~Didn't think anyone ever would be.~ 
+= ~So you should stop with the words. You don't want to see a goblin cry. Trust me.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkGobbos","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.MyPeopleNeedMe
+SAY ~Maybe. But why should I?~
+= ~Spent fifteen years with my tribe. Saw how they are. Violent. Short-sighted. Changing your nature isn't easy.~
+++ ~But it's not impossible. Not if you teach them.~ + BFSMk.DifficultChange
+++ ~It's your decision, M'Khiin. I'm not here to push you.~ + BFSMk.DifficultChange
+++ ~You're right. Forget about it.~ + BFSMk.ForgetHelpingGobbos
+END
+
+IF ~~ BFSMk.DifficultChange
+SAY ~Can't teach someone who doesn't want to learn.~ 
+= ~...But maybe if I keep talking, one day they'll listen.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkGobbos","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.ForgetHelpingGobbos
+SAY ~Good. Easier that way.~
+IF ~~ THEN DO ~SetGlobal("BFSMkGobbos","GLOBAL",2)~ EXIT
+END
+
+// Post 'Diplomacy' meeting with Commanders and Caelar
+// Foreshadowing the 'You're captured, I need to run' eventuality 
+IF ~Global("BFSMkAggressiveNegotations","GLOBAL",1)~ THEN BEGIN BFSMk.AggressiveNegotiations
 SAY ~Words didn't fix much.~ 
 + ~Class(Player1,BARD)~ + ~Only because they weren't the right words.~ + BFSMk.Diplomacy
 ++ ~Actions often speak louder but words can still change hearts.~ + BFSMk.Diplomacy
-++ ~This why why I prefer reaching for my weapon first.~ + BFSMk.Stabbity
+++ ~This is why I prefer reaching for my weapon first.~ + BFSMk.Stabbity
 + ~Class(Player1,THIEF_ALL)~ + ~A well-aimed strike can communicate what words cannot.~ + BFSMk.Stabbity
 END
 
@@ -599,13 +677,13 @@ END
 
 IF ~~ BFSMk.PlaceInDanger
 SAY ~...What? We're already in danger. Have been this entire time.~
-IF ~~ + BFSMK.FreeForMe
+IF ~~ + BFSMk.FreeForMe
 END
 
 IF ~~ BFSMk.HelpEww
 SAY ~Might not have a choice. Not if those too-talls are deciding.~
 = ~Be careful.~ 
-IF ~~ EXIT
+IF ~~ THEN DO ~SetGlobal("BFSMkAggressiveNegotations","GLOBAL",2)~ EXIT
 END
 
 IF ~~ BFSMk.Capable
@@ -617,9 +695,43 @@ IF ~~ BFSMk.FreeForMe
 SAY ~Broke free of a cage once. Could do it again. Easier if you're there too.~ 
 = ~But if those too-talls are deciding… I won't get the chance.~
 = ~Be careful.~ 
-IF ~~ EXIT
+IF ~~ THEN DO ~SetGlobal("BFSMkAggressiveNegotations","GLOBAL",2)~ EXIT
 END
-*/ 
+
+// Post Avernus
+IF ~Global("BFSMkAvernus","GLOBAL",1)~ THEN BEGIN BFSMk.PostAvernus 
+SAY ~We made it. Wasn't sure we would.~
+= ~Feel like I can sleep for days after that mess.~ 
+++ ~Thanks for your help, M'Khiin.~ + BFSMk.AvernusThanks
+++ ~I rather feel like I can sleep for a whole week myself.~ + BFSMk.AvernusSleep
+++ ~What did you think of Avernus?~ + BFSMk.Avernus
+++ ~Are you going to join the celebration?~ + BFSMk.CelebrateGoodTimes
+END
+
+IF ~~ BFSMk.AvernusThanks
+SAY ~Wouldn't leave a friend behind. Not if I can help it.~
+= ~Gonna find somewhere quiet. For now. Before the too-talls get to drinking.~
+IF ~~ THEN DO ~SetGlobal("BFSMkAvernus","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.Avernus
+SAY ~Too warm. Didn't like the moving floors.~
+= ~But where you go, I'll try to follow.~ 
+= ~Gonna find somewhere quiet. For now. Before the too-talls get to drinking.~
+IF ~~ THEN DO ~SetGlobal("BFSMkAvernus","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.AvernusSleep
+SAY ~You've earned it.~
+= ~Gonna find somewhere quiet. For now. Before the too-talls get to drinking.~
+IF ~~ THEN DO ~SetGlobal("BFSMkAvernus","GLOBAL",2)~ EXIT
+END
+
+IF ~~ BFSMk.CelebrateGoodTimes
+SAY ~Not sure there's place for a goblin. Especially when the too-talls get to drinking.~
+= ~Better to find a quiet spot and stay out of sight.~ 
+IF ~~ THEN DO ~SetGlobal("BFSMkAvernus","GLOBAL",2)~ EXIT
+END  
 
 // Player Initiated Dialogue (PID)
 IF ~IsGabber(Player1)~ BFSMk.PID    			

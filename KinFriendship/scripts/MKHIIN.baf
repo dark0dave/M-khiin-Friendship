@@ -188,3 +188,64 @@ THEN
     StartDialogNoSet([PC])
 END
 
+// Post meeting with other goblins
+IF
+InParty(Myself)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+OR(2) Global("BDSDD251_TALK","GLOBAL",2) Global("BD_SDD251","GLOBAL",4)
+Global("BFSMkGobbos","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("BFSMkGobbos","GLOBAL",1)
+END
+
+IF
+  Global("BFSMkGobbos","GLOBAL",1)
+ THEN
+ RESPONSE #100
+  MoveToObject(Player1)
+  Dialogue(Player1)
+END 
+
+// Post Diplomacy Meeting with Caelar
+IF
+InParty(Myself)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID) 
+!StateCheck(Myself,CD_STATE_NOTVALID)
+CombatCounter(0)
+AreaCheck("bd7300")
+Global("bd_plot","global",393)
+Global("BFSMkAggressiveNegotations","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("BFSMkAggressiveNegotations","GLOBAL",1)
+END
+
+IF
+  Global("BFSMkAggressiveNegotations","GLOBAL",1)
+ THEN
+ RESPONSE #100
+  MoveToObject(Player1)
+  Dialogue(Player1)
+END 
+
+// Post Avernus
+
+IF
+	InParty(Myself)
+	AreaCheck("BD4300")
+	GlobalGT("bd_plot","global",589)
+	Global("BFSMkAvernus","GLOBAL",0)
+	CombatCounter(0)
+THEN
+RESPONSE #100
+	SetInterrupt(FALSE)
+	Wait(1)
+	SetGlobal("BFSMkAvernus","GLOBAL",1)
+	StartDialogueNoSet(Player1)
+	SetInterrupt(TRUE)
+END
