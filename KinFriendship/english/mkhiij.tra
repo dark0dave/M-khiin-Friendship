@@ -42,7 +42,7 @@
 @41   = ~Goblins are small. You don't need much.~
 @42   = ~I don't have time for this. Figure it out yourself.~
 @43   = ~Don't solve things though. I'm smaller. Won't need as much.~
-@44   = ~Too-tall may need more. Keeps sharing with that rodent of his.~
+@44   = ~Too-tall may need more. He keeps sharing with that rodent of his.~
 @45   = ~Don't solve things though. Some days I need more. Less on others.~
 @46   = ~And too-tall keeps sharing with that rodent of his.~
 @47   = ~What's your pick?~
@@ -118,16 +118,16 @@
 @117  = ~Already knew that. You took in a goblin. Made her your friend. You were special from the start.~
 @118  = ~Haven't though. There's always more hidden. You took in a goblin. Made her your friend. You were special from the start.~
 @119  = ~Then I will watch. Learn. You took in a goblin. Made her your friend. You were special from the start.~
-@120  = ~Stupid Nothing good comes from bringing the long-dead back.~
+@120  = ~Stupid. Nothing good comes from bringing the long-dead back.~
 @121  = ~But we're shamans. We speak with spirits all the time.~
 @122  = ~But you're a shaman. You speak with ghosts - with spirits - all the time.~
 @123  = ~Too bad Caelar isn't interested in listening to reason.~
 @124  = ~Even if it means condemning innocents to eternal torment?~
-@125  = ~They listen. But only if we speak the right words. You know. Too many of them. All frightened. Confused. Running scared. Won't end well for anyone.~
+@125  = ~They listen. But only if we speak the right words. You'd know. Too many of them. All frightened. Confused. Running scared. Won't end well for anyone.~
 @126  = ~They listen. But only if I speak the right words. Too many of them. All frightened. Confused. Running scared. Won't end well for anyone.~
 @127  = ~Yes. Wouldn't be coming back *right*.~
 @128  = ~More fools following fools.~
-@129  = ~Bridge is gone now. Don't think tossing me over would help. Can't get you over.~
+@129  = ~Bridge is gone now. Don't think tossing me over would help. Can't get you over after.~
 @130  = ~...Might not make it across anyway. Guess we're taking the longer road.~
 @131  = ~Spirits stir. Something's up ahead.~
 @132  = ~It's nothing we can't handle.~
@@ -142,7 +142,7 @@
 @141  = ~Yes. This was once a temple of Bhaal, and I am a Bhaalspawn.~
 @142  = ~I was wondering when we'd have this conversation. Yes, I'm a Bhaalspawn. Does it matter?~
 @143  = ~Look around. It hasn't belonged to him for some time.~
-@144  = ~TThere's only one father I recognize - and it's not this one.~
+@144  = ~There's only one father I recognize - and it's not this one.~
 @145  = ~M'Khiin. I'm. Not. Interested.~
 @146  = ~Heard about that. People whisper back in camp. Some scared, some not so much. Don't see why it matters.~
 @147  = ~This place needs a good scrubbing. Hope you weren't thinking of moving in.~
@@ -151,7 +151,7 @@
 @150  = ~Agreed. This place needs a good scrubbing. Hope you weren't thinking of moving in.~
 @151  = ~Hmph. You help 'em, something bad happens, now they don't like you anymore.~
 @152  = ~Been the same for me. One look and the worst thoughts start crawling in. Don't blame 'em. Haven't had good experiences with goblins either.~
-@153  = ~Just a scorch mark on the ground. You're still the same <CHARNAME>.~
+@153  = ~It's just a scorch mark on the ground. You're still the same <CHARNAME>.~
 @154  = ~M'Khiin, are you trying to comfort me?~
 @155  = ~Being judged for *what* you are, rather than who you are, is the worst.~
 @156  = ~I don't need your sympathy, M'Khiin. Back off.~
@@ -220,7 +220,7 @@
 @219  = ~Someone always needs saving. That won't change. Freedom's worth more.~
 @220  = ~I do. I trust you.~
 @221  = ~Trouble's never far. Not with you. Someday it'll grow too much. Become the kind I can't save you from.~
-@222  = ~Even if I want to. Some changes beyond a goblin's power.~
+@222  = ~Even if I want to. Some changes are beyond a goblin's power.~
 @223  = ~While I appreciate your bravery, M'Khiin, I never want you to place yourself in danger for me.~
 @224  = ~I'd never lower myself to needing your help.~
 @225  = ~I don't believe that, I know how strong you are. You're capable of more than you think.~
@@ -237,7 +237,7 @@
 @236  = ~What did you think of Avernus?~
 @237  = ~Are you going to join the celebration?~
 @238  = ~Wouldn't leave a friend behind. Not if I can help it.~
-@239  = ~Gonna find somewhere quiet. For now. Before the too-talls get to drinking.~
+@239  = ~Gonna find somewhere quiet for now. Before the too-talls get to drinking.~
 @240  = ~Too warm. Didn't like the moving floors.~
 @241  = ~But where you go, I'll try to follow.~
 @242  = ~You've earned it.~

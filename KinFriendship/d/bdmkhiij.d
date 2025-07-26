@@ -1,9 +1,5 @@
-/* 2024.10.22. Dialogue Completed. Proofreading / Rewrites not started. */
-
 /* Get M'Khiin to slowly trust the PC over time - completing her main friendship arc for SoD. 
 Three main themes: trust, strength in numbers, leadership.*/ 
-/* BG 2 Content will start in the Temple Ruins area - and focus on M'Khiin becoming a leader, helping her fellow goblins, following up on her friendship arc here.
-She couldn't save the PC from imprisonment. Not as a lone goblin. She needs to become a leader and build a place where she belongs. */ 
 
 // Allow PC to stand up for M'Khiin during Jegg's dialogue
 EXTEND_BOTTOM BDJEGG 94
@@ -134,7 +130,7 @@ END
 
 IF ~~ BFSMk.EqualFoodM
 SAY @43 /* Don't solve things though. I'm smaller. Won't need as much. */ 
-= @44 /* Too-tall may need more. Keeps sharing with that rodent of his. */
+= @44 /* Too-tall may need more. He keeps sharing with that rodent of his. */
 IF ~~ + BFSMk.FoodTell
 END
 
@@ -394,7 +390,7 @@ END
 // Post Meeting Caelar
 // French Parents stop tossing your children over the school's fence, thanks :) 
 IF ~Global("BFSMkBridge","GLOBAL",1)~ THEN BEGIN BFSMk.BridgeConvo
-SAY @120 /* Stupid Nothing good comes from bringing the long-dead back. */
+SAY @120 /* Stupid. Nothing good comes from bringing the long-dead back. */
 + ~Class(Player1,SHAMAN)~ + @121 /* But we're shamans. We speak with spirits all the time. */ + BFSMk.BadIdeaS
 + ~!Class(Player1,SHAMAN)~ + @122 /* But you're a shaman. You speak with ghosts - with spirits - all the time. */  + BFSMk.BadIdea
 ++ @123 /* Too bad Caelar isn't interested in listening to reason. */ + BFSMk.CaelarSaysYolo
@@ -402,7 +398,7 @@ SAY @120 /* Stupid Nothing good comes from bringing the long-dead back. */
 END 
 
 IF ~~ BFSMk.BadIdeaS
-SAY @125 /* They listen. But only if we speak the right words. You know. Too many of them. All frightened. Confused. Running scared. Won't end well for anyone. */ 
+SAY @125 /* They listen. But only if we speak the right words. You'd know. Too many of them. All frightened. Confused. Running scared. Won't end well for anyone. */ 
 IF ~~ + BFSMk.FollowingTheTrail
 END
 
@@ -422,7 +418,7 @@ IF ~~ + BFSMk.FollowingTheTrail
 END
 
 IF ~~ BFSMk.FollowingTheTrail
-SAY @129 /* Bridge is gone now. Don't think tossing me over would help. Can't get you over. */ 
+SAY @129 /* Bridge is gone now. Don't think tossing me over would help. Can't get you over after. */ 
 = @130 /* ...Might not make it across anyway. Guess we're taking the longer road. */ 
 IF ~~ DO ~SetGlobal("BFSMkBridge","GLOBAL",2) ~ EXIT
 END
@@ -459,7 +455,7 @@ SAY @140 /* This place belonged to your pa? */
 ++ @141 /* Yes. This was once a temple of Bhaal, and I am a Bhaalspawn. */ + BFSMk.BhaalspawnAdmission
 ++ @142 /* I was wondering when we'd have this conversation. Yes, I'm a Bhaalspawn. Does it matter? */ + BFSMk.BhaalspawnAdmission
 ++ @143 /* Look around. It hasn't belonged to him for some time. */ + BFSMk.Ruins
-++ @144 /* TThere's only one father I recognize - and it's not this one. */ + BFSMk.MightBeYourFatherButNotYourDaddy
+++ @144 /* There's only one father I recognize - and it's not this one. */ + BFSMk.MightBeYourFatherButNotYourDaddy
 ++ @145 /* M'Khiin. I'm. Not. Interested. */ + BFSMk.StopTalkingNow
 END
 
@@ -488,7 +484,7 @@ END
 IF ~Global("BFSMkBoareskyr","GLOBAL",3)~ THEN BEGIN BFSMk.Boareskyr
 SAY @151 /* Hmph. You help 'em, something bad happens, now they don't like you anymore. */
 = @152 /* Been the same for me. One look and the worst thoughts start crawling in. Don't blame 'em. Haven't had good experiences with goblins either. */
-= @153 /* Just a scorch mark on the ground. You're still the same <CHARNAME>. */
+= @153 /* It's just a scorch mark on the ground. You're still the same <CHARNAME>. */
 ++ @154 /* M'Khiin, are you trying to comfort me? */ + BFSMk.Console
 ++ @155 /* Being judged for *what* you are, rather than who you are, is the worst. */ + BFSMk.Console
 ++ @156 /* I don't need your sympathy, M'Khiin. Back off. */ + BFSMk.NoScrubs
@@ -669,7 +665,7 @@ END
 
 IF ~~ BFSMk.Premonition
 SAY @221 /* Trouble's never far. Not with you. Someday it'll grow too much. Become the kind I can't save you from. */
-= @222 /* Even if I want to. Some changes beyond a goblin's power. */ 
+= @222 /* Even if I want to. Some changes are beyond a goblin's power. */ 
 ++ @223 /* While I appreciate your bravery, M'Khiin, I never want you to place yourself in danger for me. */ + BFSMk.PlaceInDanger
 ++ @224 /* I'd never lower myself to needing your help. */ + BFSMk.HelpEww
 ++ @225 /* I don't believe that, I know how strong you are. You're capable of more than you think. */ + BFSMk.Capable
@@ -710,7 +706,7 @@ END
 
 IF ~~ BFSMk.AvernusThanks
 SAY @238 /* Wouldn't leave a friend behind. Not if I can help it. */
-= @239 /* Gonna find somewhere quiet. For now. Before the too-talls get to drinking. */
+= @239 /* Gonna find somewhere quiet for now. Before the too-talls get to drinking. */
 IF ~~ THEN DO ~SetGlobal("BFSMkAvernus","GLOBAL",2)~ EXIT
 END
 
@@ -723,7 +719,7 @@ END
 
 IF ~~ BFSMk.AvernusSleep
 SAY @242 /* You've earned it. */
-= @239 /* Gonna find somewhere quiet. For now. Before the too-talls get to drinking. */
+= @239 /* Gonna find somewhere quiet for now. Before the too-talls get to drinking. */
 IF ~~ THEN DO ~SetGlobal("BFSMkAvernus","GLOBAL",2)~ EXIT
 END
 
