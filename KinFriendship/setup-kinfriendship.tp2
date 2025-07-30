@@ -1,22 +1,31 @@
 BACKUP ~weidu_external/backup/kinfriendship~
-AUTHOR ~bucketfulofsunshine (BFS)~
-VERSION @0 /* 1.1 */
+SUPPORT ~bucketfulofsunshine (BFS)~
+VERSION @0
 
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
 END
 
-AUTO_TRA ~kinfriendship/%s~ 
+AUTO_TRA ~kinfriendship/%s~
 
-LANGUAGE ~English~ ~English~ ~kinfriendship/english/mkhiij.tra~
-                             ~kinfriendship/english/setup-kinfriendship.tra~
+LANGUAGE ~English~
+         ~english~
+         ~kinfriendship/languages/english/mkhiij.tra~
+         ~kinfriendship/languages/english/setup-kinfriendship.tra~
+LANGUAGE ~Spanish~
+         ~spanish~
+         ~kinfriendship/languages/spanish/mkhiij.tra~
+         ~kinfriendship/languages/spanish/setup-kinfriendship.tra~
 
-BEGIN @1 /* M'Khiin Friendship for Siege of Dragonspear */
+/* M'Khiin Friendship for Siege of Dragonspear */
+BEGIN @1 DESIGNATED 1
+REQUIRE_PREDICATE GAME_IS "bgee eet" @2
+REQUIRE_PREDICATE GAME_INCLUDES "sod" @3
 
 // CamDawg's code for State.ids
 APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~
 UNLESS ~CD_STATE_NOTVALID~
 
 // Dialogues & Scripts
-COMPILE ~kinfriendship/d/bdmkhiij.d~
-EXTEND_TOP ~BDMKHIIN.bcs~ ~kinfriendship/scripts/mkhiin.baf~
+COMPILE ~%MOD_FOLDER%/d/bdmkhiij.d~
+EXTEND_TOP ~BDMKHIIN.bcs~ ~%MOD_FOLDER%/scripts/mkhiin.baf~
