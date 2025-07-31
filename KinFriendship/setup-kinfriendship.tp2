@@ -2,10 +2,6 @@ BACKUP ~weidu_external/backup/kinfriendship~
 SUPPORT ~bucketfulofsunshine (BFS)~
 VERSION @0
 
-ALWAYS
-  INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
-END
-
 AUTO_TRA ~kinfriendship/%s~
 
 LANGUAGE ~English~
