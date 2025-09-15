@@ -1,4 +1,4 @@
-# M'Khiin-Friendship
+# M'Khiin Friendship (for SoD)
 
 This mod introduces a short friendship path with M'Khiin during Siege of Dragonspear. It includes four timer-based talks, additional conversations responding to key story moments, and expanded interjections when appropriate.
 
