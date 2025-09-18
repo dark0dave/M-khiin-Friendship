@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://static.wikia.nocookie.net/baldursgategame/images/0/08/M%27Khiin_Grubdoubler_MKHIIN_Portrait_SoD.png/revision/latest?cb=20180924203225" />
+</p>
+
 # M'Khiin Friendship (for SoD)
 
 This mod introduces a short friendship path with M'Khiin during Siege of Dragonspear. It includes four timer-based talks, additional conversations responding to key story moments, and expanded interjections when appropriate.
