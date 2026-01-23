@@ -12,7 +12,11 @@ LANGUAGE ~Spanish~
          ~spanish~
          ~kinfriendship/languages/spanish/mkhiij.tra~
          ~kinfriendship/languages/spanish/setup-kinfriendship.tra~
-
+LANGUAGE ~Simplified Chinese~
+         ~schinese~
+         ~kinfriendship/languages/schinese/mkhiij.tra~
+         ~kinfriendship/languages/schinese/setup-kinfriendship.tra~
+		 
 /* M'Khiin Friendship for Siege of Dragonspear */
 BEGIN @1 DESIGNATED 1
 REQUIRE_PREDICATE GAME_IS "bgee eet" @2
