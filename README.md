@@ -23,6 +23,7 @@ A: Players have their own interpretations of canon characters. While I think she
 ## CHANGELOG
 
 * 1.3 - Updated with Spanish translation by RoyalProtector. <3 
+* 1.4 - Updated with Simplified Chinese translation by MephistoSatanDevil. <3
 
 ## LICENSING
 
