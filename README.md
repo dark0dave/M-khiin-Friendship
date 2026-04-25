@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://static.wikia.nocookie.net/baldursgategame/images/0/08/M%27Khiin_Grubdoubler_MKHIIN_Portrait_SoD.png/revision/latest?cb=20180924203225" />
+  <img src="https://64.media.tumblr.com/713a411640ab5051eb2bebe37890456d/f83467379c46b182-42/s500x750/be8e12c23345f8f5d285c94489a8966fb5b9bd23.pnj" />
 </p>
 
 # M'Khiin Friendship (for SoD)
